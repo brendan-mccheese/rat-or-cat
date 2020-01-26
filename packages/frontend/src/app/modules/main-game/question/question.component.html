@@ -1,0 +1,11 @@
+<roc-card>
+  <h1>
+    Cat or Rat???
+    <span>Question {{questionNo$ | async}} of 10</span>
+  </h1>
+  <div></div>
+  <div *ngIf="questionNo$ | async; let questionNo">
+    <button (click)="answerQuestion(questionNo, 'RAT')">RAT</button>
+    <button (click)="answerQuestion(questionNo, 'CAT')">CAT</button>
+  </div>
+</roc-card>

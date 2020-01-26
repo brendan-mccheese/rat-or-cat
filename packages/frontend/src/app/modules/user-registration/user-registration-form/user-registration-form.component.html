@@ -1,0 +1,16 @@
+<roc-card>
+  <h1>Please register to play</h1>
+  <form [formGroup]="form" (ngSubmit)="submitDetails()">
+    <div>
+      <label>Username</label>
+      <input formControlName="username" type="text"/>
+      <div class="form-error" *ngIf="form.get('username').hasError('required') && form.touched">
+        <span>Username is required to play!</span>
+      </div>
+    </div>
+    <hr/>
+    <div>
+      <button type="submit">LETS PLAY!</button>
+    </div>
+  </form>
+</roc-card>

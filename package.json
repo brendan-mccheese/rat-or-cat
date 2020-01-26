@@ -1,0 +1,10 @@
+{
+  "name": "rat_or_cat",
+  "version": "1.0.0",
+  "description": "Over engineered game of image matching",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "^1.19.1"
+  }
+}
