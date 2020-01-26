@@ -1,8 +1,11 @@
 <roc-card>
   <h1>Well done {{username$ | async}}, you've completed the game!</h1>
   <p>I bet that was hard wasn't it?</p>
-  <h2>Here's how you've done</h2>
-  <table>
-    <tr></tr>
-  </table>
+  <h2>And your score was... <span>{{score$ | async}} / 10</span></h2>
+  <div *ngIf="(score$ | async) !== 10">
+    <h3>Looks like you can't tell the difference between rats and cats <span class="joy"></span></h3>
+  </div>
+  <div>
+    <button (click)="playAgain()">Play Again!</button>
+  </div>
 </roc-card>

@@ -42,4 +42,8 @@ Ask and thee shall receive.
 
 ## License
 
+  Cat images have been taken from here: [https://github.com/maxogden/cats]
+  
+  Rat images have been stolen from Reddit. Thanks Reddit rat lovers [https://reddit.com/r/rats]
+
   RAT or CAT is [MIT licensed](LICENSE).

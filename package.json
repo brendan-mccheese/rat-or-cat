@@ -4,7 +4,12 @@
   "description": "Over engineered game of image matching",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "bootstrap": "cd packages/frontend && yarn install && cd ../image-service && yarn install",
+    "start": "concurrently \"cd packages/frontend && yarn start\" \"cd packages/image-service && yarn start\""
+  },
   "devDependencies": {
-    "prettier": "^1.19.1"
+    "prettier": "^1.19.1",
+    "concurrently": "^5.0.2"
   }
 }

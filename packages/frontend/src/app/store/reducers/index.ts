@@ -1,7 +1,7 @@
 import { Action, ActionReducerMap, createReducer, MetaReducer, on } from "@ngrx/store";
 import { environment } from "../../../environments/environment";
 import { setUsername } from "../actions/set-username.actions";
-import { AppState } from "../app-state";
+import { AnswerResult, AppState } from "../app-state";
 import * as answerActions from "../actions/answer.actions";
 
 export function usernameReducer(state: string, action: Action) {
@@ -13,11 +13,15 @@ export function usernameReducer(state: string, action: Action) {
 
 export function answersReducer(state: AppState["answers"], action: Action) {
   return createReducer(
-    null,
+    {score: 0},
     on(answerActions.answerQuestion, (current, payload) => {
       return {
         ...state,
-        [`question${payload.questionNo}`]: payload.answer,
+        [`question${payload.questionNo}`]: {
+          answerGiven: payload.answer,
+          correctAnswer: payload.correctAnswer
+        } as AnswerResult,
+        score: payload.answer !== payload.correctAnswer ? state.score : state.score + 1
       };
     }),
   )(state, action);

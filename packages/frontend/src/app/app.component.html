@@ -12,25 +12,24 @@
   }
 </style>
 
-<!-- Toolbar -->
-<div class="toolbar" role="banner">
-  <div class="col">
-  </div>
-  <div class="col">
-    <div class="title">
-      <h2>RAT or CAT?</h2>
+<div class="content">
+  <div class="background"></div>
+  <!-- Toolbar -->
+  <div class="toolbar" role="banner">
+    <div class="col">
+    </div>
+    <div class="col">
+      <div class="title">
+        <h2>Rat <span class="rat"></span>  or Cat <span class="cat"></span>?</h2>
+      </div>
+    </div>
+    <div class="col">
+      <div *ngIf="username$ | async;let username" class="username">
+        Hi {{username}}<span class="mage"></span>
+      </div>
     </div>
   </div>
-  <div class="col">
-    <div class="username">{{username$ | async}}</div>
-  </div>
-</div>
-
-<div class="content" role="main">
   <main class="main">
     <router-outlet></router-outlet>
   </main>
-  <!-- Footer -->
-  <footer>
-  </footer>
 </div>

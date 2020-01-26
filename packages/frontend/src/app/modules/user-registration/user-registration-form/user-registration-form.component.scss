@@ -1,7 +1,5 @@
-.form-wrapper {
-  padding: 80px;
-  background-color: #fff;
-  border-radius: 5px;
+form {
+  margin-top: 20px;
 }
 
 label {
@@ -16,4 +14,13 @@ label {
 hr {
   padding: 0;
   margin: 4px;
+}
+
+.rocket:before {
+  content: "\01F680";
+}
+
+.row {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }

@@ -1,16 +1,22 @@
 export type CatOrRat = "CAT" | "RAT";
 
+export interface AnswerResult {
+    answerGiven: CatOrRat;
+    correctAnswer: CatOrRat;
+}
+
 export interface AppState {
-  username?: string;
-  answers?: {
-    question1: CatOrRat;
-    question2: CatOrRat;
-    question4: CatOrRat;
-    question5: CatOrRat;
-    question6: CatOrRat;
-    question7: CatOrRat;
-    question8: CatOrRat;
-    question9: CatOrRat;
-    question10: CatOrRat;
-  };
+    username?: string;
+    answers?: {
+        question1?: AnswerResult;
+        question2?: AnswerResult;
+        question4?: AnswerResult;
+        question5?: AnswerResult;
+        question6?: AnswerResult;
+        question7?: AnswerResult;
+        question8?: AnswerResult;
+        question9?: AnswerResult;
+        question10?: AnswerResult;
+        score: number;
+    };
 }
