@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Observable } from "rxjs";
-import { map, share } from "rxjs/operators";
+import { first, map, share } from "rxjs/operators";
 import { Store } from "@ngrx/store";
 import { AppState, CatOrRat } from "../../../store/app-state";
-import { answerQuestion } from "../../../store/actions/answer.actions";
+import { answerQuestion, resetAnswers } from "../../../store/actions/answer.actions";
 import { HttpClient } from "@angular/common/http";
 
 type ImageResult = { path: string; type: "RAT" | "CAT" };
@@ -28,7 +28,11 @@ export class QuestionComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.questionNo$ = this.routerState.data.pipe(map(x => x.no));
+        this.questionNo$ = this.routerState.data.pipe(share(), map(x => x.no));
+        this.questionNo$.pipe(first()).subscribe(no => {
+          if (no !== 1) { return; }
+          this.store.dispatch(resetAnswers());
+        });
         // TODO: Use an effect to handle question requests
 
         // Get randomized rat or cat image data

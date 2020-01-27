@@ -24,6 +24,9 @@ export function answersReducer(state: AppState["answers"], action: Action) {
         score: payload.answer !== payload.correctAnswer ? state.score : state.score + 1
       };
     }),
+    on(answerActions.resetAnswers, (current) => ({
+      score: 0
+    }))
   )(state, action);
 }
 
