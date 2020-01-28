@@ -2,14 +2,14 @@
   <h1>
    Rat or Cat???
   </h1>
-  <h2>Question {{questionNo$ | async}} of 10</h2>
+  <h2>Question {{questionNo}} of 10</h2>
   <div *ngIf="image$ | async; let image">
     <img [src]="image" />
   </div>
-  <div *ngIf="questionNo$ | async; let questionNo" class="buttons">
+  <div *ngIf="questionNo" class="buttons">
     <ng-container *ngIf="correctAnswer$ | async; let correctAnswer">
-      <button (click)="answerQuestion(questionNo, 'RAT', correctAnswer)">RAT</button>
-      <button (click)="answerQuestion(questionNo, 'CAT', correctAnswer)">CAT</button>
+      <button (click)="answerQuestion('RAT', correctAnswer)">RAT</button>
+      <button (click)="answerQuestion( 'CAT', correctAnswer)">CAT</button>
     </ng-container>
   </div>
 </roc-card>
