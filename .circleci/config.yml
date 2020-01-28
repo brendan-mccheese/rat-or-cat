@@ -1,0 +1,52 @@
+version: 2
+jobs:
+  test-frontend:
+    docker:
+      - image: circleci/node:12
+    working_directory: ~/repo/packages/frontend
+    steps:
+      - checkout:
+          path: ~/repo
+      - restore_cache:
+          keys:
+            - v1-packages-frontend-{{ checksum "package.json" }}
+            - v1-packages-frontend-
+      - run:
+          name: Install packages
+          command: yarn install --frozen-lockfile
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-packages-frontend-{{ checksum "package.json" }}
+      - run:
+          name: Install JUnit coverage reporter
+          command: yarn add --dev jest-junit
+      - run:
+          name: Run tests with JUnit as reporter
+          command: jest --ci --runInBand --reporters=default --reporters=jest-junit
+          environment:
+            JEST_JUNIT_OUTPUT_DIR: "test-results/jest-test-results.xml"
+      - store_test_results:
+          path: test-results
+
+  build-frontend:
+    docker:
+      - image: circleci/node:12
+    working_directory: ~/repo/packages/frontend
+    steps:
+      - checkout:
+          path: ~/repo
+      - restore_cache:
+          keys:
+            - v1-packages-frontend-{{ checksum "package.json" }}
+            - v1-packages-frontend-
+      - run:
+          name: Install packages
+          command: yarn install --frozen-lockfile
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-packages-frontend-{{ checksum "package.json" }}
+      - run:
+          name: Build frontend
+          command: yarn build --configuration=production
