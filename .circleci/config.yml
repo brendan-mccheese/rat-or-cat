@@ -1,0 +1,68 @@
+#
+# CircleCI configuration file
+#
+version: 2.1
+
+#
+# Commands
+#
+commands:
+  install_frontend_modules:
+    steps:
+      - restore_cache:
+          keys:
+            - v1-packages-frontend-{{ checksum "package.json" }}
+            - v1-packages-frontend-
+      - run:
+          name: Install node modules
+          command: yarn install --frozen-lockfile
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-packages-frontend-{{ checksum "package.json" }}
+
+#
+# Vars
+#
+var_docker_default: &default_docker
+  docker:
+    - image: circleci/node:12
+
+#
+# Job definitions
+#
+jobs:
+  test-frontend:
+    <<: *default_docker
+    working_directory: ~/repo/packages/frontend
+    steps:
+      - checkout:
+          path: ~/repo
+      - install_frontend_modules
+      - run:
+          name: Run tests with JUnit as reporter
+          command: yarn jest --ci --runInBand --reporters=default --reporters=jest-junit
+          environment:
+            JEST_JUNIT_OUTPUT_DIR: "test-results/jest-test-results.xml"
+      - store_test_results:
+          path: test-results
+
+  build-frontend:
+    <<: *default_docker
+    working_directory: ~/repo/packages/frontend
+    steps:
+      - checkout:
+          path: ~/repo
+      - install_frontend_modules
+      - run:
+          name: Build frontend
+          command: yarn build --configuration=production
+
+#
+# Workflows
+#
+workflows:
+  build-test-deploy:
+    jobs:
+      - build-frontend
+      - test-frontend

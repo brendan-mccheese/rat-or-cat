@@ -1,21 +1,20 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "./out-tsc/spec",
+    "outDir": "../out-tsc/spec",
+    "module": "commonjs",
+    "allowJs": true,
     "types": [
-      "jasmine",
+      "jest",
       "node"
-    ]
+    ],
+    "emitDecoratorMetadata": true
   },
   "files": [
-    "src/test.ts",
     "src/polyfills.ts"
   ],
   "include": [
-    "src/**/*.spec.ts",
-    "src/**/*.d.ts"
-  ],
-  "angularCompilerOptions": {
-    "enableIvy": true
-  }
+    "**/*.spec.ts",
+    "**/*.d.ts"
+  ]
 }
