@@ -1,3 +1,6 @@
+#
+# CircleCI configuration file
+#
 version: 2
 jobs:
   test-frontend:
