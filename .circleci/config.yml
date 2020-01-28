@@ -2,28 +2,43 @@
 # CircleCI configuration file
 #
 version: 2.1
-jobs:
-  test-frontend:
-    docker:
-      - image: circleci/node:12
-    working_directory: ~/repo/packages/frontend
+
+#
+# Commands
+#
+commands:
+  install_frontend_modules:
     steps:
-      - checkout:
-          path: ~/repo
       - restore_cache:
           keys:
             - v1-packages-frontend-{{ checksum "package.json" }}
             - v1-packages-frontend-
       - run:
-          name: Install packages
+          name: Install node modules
           command: yarn install --frozen-lockfile
       - save_cache:
           paths:
             - node_modules
           key: v1-packages-frontend-{{ checksum "package.json" }}
-      - run:
-          name: Install JUnit coverage reporter
-          command: yarn add --dev jest-junit
+
+#
+# Vars
+#
+var_docker_default: &default_docker
+  docker:
+    - image: circleci/node:12
+
+#
+# Job definitions
+#
+jobs:
+  test-frontend:
+    <<: *default_docker
+    working_directory: ~/repo/packages/frontend
+    steps:
+      - checkout:
+          path: ~/repo
+      - install_frontend_modules
       - run:
           name: Run tests with JUnit as reporter
           command: yarn jest --ci --runInBand --reporters=default --reporters=jest-junit
@@ -33,27 +48,19 @@ jobs:
           path: test-results
 
   build-frontend:
-    docker:
-      - image: circleci/node:12
+    <<: *default_docker
     working_directory: ~/repo/packages/frontend
     steps:
       - checkout:
           path: ~/repo
-      - restore_cache:
-          keys:
-            - v1-packages-frontend-{{ checksum "package.json" }}
-            - v1-packages-frontend-
-      - run:
-          name: Install packages
-          command: yarn install --frozen-lockfile
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-packages-frontend-{{ checksum "package.json" }}
+      - install_frontend_modules
       - run:
           name: Build frontend
           command: yarn build --configuration=production
 
+#
+# Workflows
+#
 workflows:
   build-test-deploy:
     jobs:
