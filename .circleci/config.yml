@@ -20,7 +20,28 @@ commands:
           paths:
             - node_modules
           key: v1-packages-frontend-{{ checksum "package.json" }}
-
+  install_image_service_modules:
+    steps:
+      - restore_cache:
+          keys:
+            - v1-packages-image-service-{{ checksum "package.json" }}
+            - v1-packages-image-service-
+      - run:
+          name: Install node modules
+          command: yarn install --frozen-lockfile
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-packages-image-service-{{ checksum "package.json" }}
+  jest_with_junit:
+    steps:
+      - run:
+          name: Run tests with JUnit as reporter
+          command: yarn jest --ci --runInBand --reporters=default --reporters=jest-junit
+          environment:
+            JEST_JUNIT_OUTPUT_DIR: "test-results/jest-test-results.xml"
+      - store_test_results:
+          path: test-results
 #
 # Vars
 #
@@ -32,21 +53,6 @@ var_docker_default: &default_docker
 # Job definitions
 #
 jobs:
-  test-frontend:
-    <<: *default_docker
-    working_directory: ~/repo/packages/frontend
-    steps:
-      - checkout:
-          path: ~/repo
-      - install_frontend_modules
-      - run:
-          name: Run tests with JUnit as reporter
-          command: yarn jest --ci --runInBand --reporters=default --reporters=jest-junit
-          environment:
-            JEST_JUNIT_OUTPUT_DIR: "test-results/jest-test-results.xml"
-      - store_test_results:
-          path: test-results
-
   build-frontend:
     <<: *default_docker
     working_directory: ~/repo/packages/frontend
@@ -58,6 +64,35 @@ jobs:
           name: Build frontend
           command: yarn build --configuration=production
 
+  test-frontend:
+    <<: *default_docker
+    working_directory: ~/repo/packages/frontend
+    steps:
+      - checkout:
+          path: ~/repo
+      - install_frontend_modules
+      - jest_with_junit
+
+  build-image-service:
+    <<: *default_docker
+    working_directory: ~/repo/packages/image-service
+    steps:
+      - checkout:
+          path: ~/repo
+      - install_image_service_modules
+      - run:
+          name: Build image service
+          command: yarn build
+
+  test-image-service:
+    <<: *default_docker
+    working_directory: ~/repo/packages/image-service
+    steps:
+      - checkout:
+          path: ~/repo
+      - install_image_service_modules
+      - jest_with_junit
+
 #
 # Workflows
 #
@@ -65,4 +100,10 @@ workflows:
   build-test-deploy:
     jobs:
       - build-frontend
-      - test-frontend
+      - build-image-service
+      - test-frontend:
+          requires:
+            - build-frontend
+      - test-image-service:
+          requires:
+            - build-image-service
