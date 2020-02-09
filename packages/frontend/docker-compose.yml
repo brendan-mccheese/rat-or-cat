@@ -1,0 +1,10 @@
+version: "3.7"
+
+services:
+  frontend:
+    build:
+      context: .
+    ports:
+    - 4200:80
+    environment:
+      IMAGE_SERVICE_URL: http://desktop:3000

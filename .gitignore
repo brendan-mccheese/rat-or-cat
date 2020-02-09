@@ -1,5 +1,9 @@
 
 node_modules
 
+.garden/build
+obj
+bin
+
 # IDE
 .idea/workspace.xml
