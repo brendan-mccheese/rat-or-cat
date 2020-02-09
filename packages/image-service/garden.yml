@@ -1,0 +1,9 @@
+kind: Module
+name: image-service
+description: Image service
+type: container
+services:
+  - name: image-service
+    ports:
+      - name: http
+        containerPort: 3000

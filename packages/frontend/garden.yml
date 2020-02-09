@@ -10,3 +10,5 @@ services:
     ingresses:
       - path: /
         port: http
+    env:
+      IMAGE_SERVICE_URL: http://image-service.rat-or-cat.svc.cluster.local:3000
