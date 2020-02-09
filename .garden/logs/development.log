@@ -1,0 +1,297 @@
+
+[2020-02-08T22:53:09.920Z] Thanks for installing Garden! We work hard to provide you with the best experience we can. We collect some anonymized usage data while you use Garden. If you'd like to know more about what we collect or if you'd like to opt out of telemetry, please read more at https://github.com/garden-io/garden/blob/master/README.md#Analytics
+
+[2020-02-08T22:53:09.924Z] Getting status...
+
+[2020-02-08T22:53:09.967Z] Fetching kubectl...
+
+[2020-02-08T22:53:18.231Z] Fetched kubectl
+
+[2020-02-08T22:53:18.360Z] Error: Could not read cluster from kubeconfig for context docker-for-desktop
+    at new KubeApi (/snapshot/project/garden-service/tmp/dist/build/src/plugins/kubernetes/api.js:0)
+    at Function.<anonymous> (/snapshot/project/garden-service/tmp/dist/build/src/plugins/kubernetes/api.js:0)
+    at Generator.next (<anonymous>)
+    at fulfilled (/snapshot/project/garden-service/tmp/dist/build/src/plugins/kubernetes/api.js:0)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+Error Details:
+context: docker-for-desktop
+config:
+  clusters: []
+  contexts: []
+  users: []
+  currentContext: docker-for-desktop
+
+
+[2020-02-08T22:53:18.368Z] Error: Failed resolving one or more providers:
+- local-kubernetes
+    at Garden.<anonymous> (/snapshot/project/garden-service/tmp/dist/build/src/garden.js:0)
+    at Generator.next (<anonymous>)
+    at fulfilled (/snapshot/project/garden-service/tmp/dist/build/src/garden.js:0)
+Error Details:
+rawConfigs:
+  - name: exec
+  - name: container
+  - name: local-kubernetes
+    environments:
+      - local
+taskResults:
+  resolve-provider.exec:
+    type: resolve-provider
+    key: resolve-provider.exec
+    name: exec
+    description: resolving provider exec
+    completedAt: '2020-02-08T22:53:09.959Z'
+    batchId: b61d62e9-9ec2-4d31-b760-a0d5fbd546b6
+    output:
+      name: exec
+      dependencies: []
+      moduleConfigs: []
+      config:
+        name: exec
+        path: /home/brendan/git/rat-or-cat
+      status:
+        ready: true
+        outputs: {}
+    dependencyResults: {}
+  resolve-provider.container:
+    type: resolve-provider
+    key: resolve-provider.container
+    name: container
+    description: resolving provider container
+    completedAt: '2020-02-08T22:53:09.959Z'
+    batchId: b61d62e9-9ec2-4d31-b760-a0d5fbd546b6
+    output:
+      name: container
+      dependencies: []
+      moduleConfigs: []
+      config:
+        name: container
+        path: /home/brendan/git/rat-or-cat
+      status:
+        ready: true
+        outputs: {}
+    dependencyResults: {}
+  resolve-provider.local-kubernetes:
+    type: resolve-provider
+    description: resolving provider local-kubernetes
+    key: resolve-provider.local-kubernetes
+    name: local-kubernetes
+    error:
+      detail:
+        context: docker-for-desktop
+        config:
+          clusters: []
+          contexts: []
+          users: []
+          currentContext: docker-for-desktop
+      type: configuration
+    completedAt: '2020-02-08T22:53:18.356Z'
+    batchId: b61d62e9-9ec2-4d31-b760-a0d5fbd546b6
+messages:
+  - >-
+    - local-kubernetes: Could not read cluster from kubeconfig for context
+    docker-for-desktop
+
+
+[2020-02-08T22:53:18.373Z] 
+See error.log for detailed error message
+
+[2020-02-08T22:53:18.477Z] Getting status...
+
+[2020-02-08T22:53:36.992Z] Getting status...
+
+[2020-02-08T22:53:37.121Z] Error: Could not read cluster from kubeconfig for context docker-for-desktop
+    at new KubeApi (/snapshot/project/garden-service/tmp/dist/build/src/plugins/kubernetes/api.js:0)
+    at Function.<anonymous> (/snapshot/project/garden-service/tmp/dist/build/src/plugins/kubernetes/api.js:0)
+    at Generator.next (<anonymous>)
+    at fulfilled (/snapshot/project/garden-service/tmp/dist/build/src/plugins/kubernetes/api.js:0)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+Error Details:
+context: docker-for-desktop
+config:
+  clusters: []
+  contexts: []
+  users: []
+  currentContext: docker-for-desktop
+
+
+[2020-02-08T22:53:37.128Z] Error: Failed resolving one or more providers:
+- local-kubernetes
+    at Garden.<anonymous> (/snapshot/project/garden-service/tmp/dist/build/src/garden.js:0)
+    at Generator.next (<anonymous>)
+    at fulfilled (/snapshot/project/garden-service/tmp/dist/build/src/garden.js:0)
+Error Details:
+rawConfigs:
+  - name: exec
+  - name: container
+  - name: local-kubernetes
+    environments:
+      - local
+taskResults:
+  resolve-provider.exec:
+    type: resolve-provider
+    key: resolve-provider.exec
+    name: exec
+    description: resolving provider exec
+    completedAt: '2020-02-08T22:53:37.019Z'
+    batchId: 802c7e41-2712-4c35-977c-7104e10eb0fc
+    output:
+      name: exec
+      dependencies: []
+      moduleConfigs: []
+      config:
+        name: exec
+        path: /home/brendan/git/rat-or-cat
+      status:
+        ready: true
+        outputs: {}
+    dependencyResults: {}
+  resolve-provider.container:
+    type: resolve-provider
+    key: resolve-provider.container
+    name: container
+    description: resolving provider container
+    completedAt: '2020-02-08T22:53:37.019Z'
+    batchId: 802c7e41-2712-4c35-977c-7104e10eb0fc
+    output:
+      name: container
+      dependencies: []
+      moduleConfigs: []
+      config:
+        name: container
+        path: /home/brendan/git/rat-or-cat
+      status:
+        ready: true
+        outputs: {}
+    dependencyResults: {}
+  resolve-provider.local-kubernetes:
+    type: resolve-provider
+    description: resolving provider local-kubernetes
+    key: resolve-provider.local-kubernetes
+    name: local-kubernetes
+    error:
+      detail:
+        context: docker-for-desktop
+        config:
+          clusters: []
+          contexts: []
+          users: []
+          currentContext: docker-for-desktop
+      type: configuration
+    completedAt: '2020-02-08T22:53:37.116Z'
+    batchId: 802c7e41-2712-4c35-977c-7104e10eb0fc
+messages:
+  - >-
+    - local-kubernetes: Could not read cluster from kubeconfig for context
+    docker-for-desktop
+
+
+[2020-02-08T22:53:37.131Z] 
+See error.log for detailed error message
+
+[2020-02-08T22:53:37.240Z] Getting status...
+
+[2020-02-08T23:01:03.493Z] Getting status...
+
+[2020-02-08T23:01:03.704Z] Error: Could not read cluster from kubeconfig for context docker-for-desktop
+    at new KubeApi (/snapshot/project/garden-service/tmp/dist/build/src/plugins/kubernetes/api.js:0)
+    at Function.<anonymous> (/snapshot/project/garden-service/tmp/dist/build/src/plugins/kubernetes/api.js:0)
+    at Generator.next (<anonymous>)
+    at fulfilled (/snapshot/project/garden-service/tmp/dist/build/src/plugins/kubernetes/api.js:0)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+Error Details:
+context: docker-for-desktop
+config:
+  clusters: []
+  contexts: []
+  users: []
+  currentContext: docker-for-desktop
+
+
+[2020-02-08T23:01:03.714Z] Error: Failed resolving one or more providers:
+- local-kubernetes
+    at Garden.<anonymous> (/snapshot/project/garden-service/tmp/dist/build/src/garden.js:0)
+    at Generator.next (<anonymous>)
+    at fulfilled (/snapshot/project/garden-service/tmp/dist/build/src/garden.js:0)
+Error Details:
+rawConfigs:
+  - name: exec
+  - name: container
+  - name: local-kubernetes
+    environments:
+      - local
+taskResults:
+  resolve-provider.exec:
+    type: resolve-provider
+    key: resolve-provider.exec
+    name: exec
+    description: resolving provider exec
+    completedAt: '2020-02-08T23:01:03.522Z'
+    batchId: b096fddf-d738-483c-b43c-6a9986fb40f2
+    output:
+      name: exec
+      dependencies: []
+      moduleConfigs: []
+      config:
+        name: exec
+        path: /home/brendan/git/rat-or-cat
+      status:
+        ready: true
+        outputs: {}
+    dependencyResults: {}
+  resolve-provider.container:
+    type: resolve-provider
+    key: resolve-provider.container
+    name: container
+    description: resolving provider container
+    completedAt: '2020-02-08T23:01:03.522Z'
+    batchId: b096fddf-d738-483c-b43c-6a9986fb40f2
+    output:
+      name: container
+      dependencies: []
+      moduleConfigs: []
+      config:
+        name: container
+        path: /home/brendan/git/rat-or-cat
+      status:
+        ready: true
+        outputs: {}
+    dependencyResults: {}
+  resolve-provider.local-kubernetes:
+    type: resolve-provider
+    description: resolving provider local-kubernetes
+    key: resolve-provider.local-kubernetes
+    name: local-kubernetes
+    error:
+      detail:
+        context: docker-for-desktop
+        config:
+          clusters: []
+          contexts: []
+          users: []
+          currentContext: docker-for-desktop
+      type: configuration
+    completedAt: '2020-02-08T23:01:03.699Z'
+    batchId: b096fddf-d738-483c-b43c-6a9986fb40f2
+messages:
+  - >-
+    - local-kubernetes: Could not read cluster from kubeconfig for context
+    docker-for-desktop
+
+
+[2020-02-08T23:01:03.717Z] 
+See error.log for detailed error message
+
+[2020-02-08T23:01:03.832Z] Getting status...
+
+[2020-02-08T23:01:17.308Z] Getting status...
+
+[2020-02-08T23:01:17.825Z] enabling required addons (dns, registry, storage, ingress)
+
+[2020-02-08T23:01:30.517Z] Fetching helm2...
+
+[2020-02-08T23:01:47.700Z] Fetched helm2
+
+[2020-02-08T23:01:47.835Z] Getting status... → Done
+
+[2020-02-08T23:01:50.766Z] Done! 
