@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: highscores-node-grpc
+spec:
+  selector:
+    matchLabels:
+      app: highscores-node-grpc
+  template:
+    metadata:
+      labels:
+        app: highscores-node-grpc
+    spec:
+      containers:
+        - name: highscores-node-grpc
+          image: rat-or-cat/highscores-node-grpc
+          ports:
+            - containerPort: 50051
