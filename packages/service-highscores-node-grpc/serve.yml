@@ -13,6 +13,6 @@ spec:
     spec:
       containers:
         - name: highscores-node-grpc
-          image: rat-or-cat/highscores-node-grpc
+          image: rat-or-cat/service-highscores-node-grpc
           ports:
             - containerPort: 50051
