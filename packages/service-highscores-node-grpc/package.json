@@ -1,0 +1,14 @@
+{
+  "name": "highscores-service-node-grpc",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node ./src/index.js"
+  },
+  "dependencies": {
+    "@grpc/proto-loader": "^0.4.0",
+    "global": "^4.4.0",
+    "google-protobuf": "^3.6.1",
+    "grpc": "^1.18.0",
+    "grpc-tools": "^1.8.1"
+  }
+}

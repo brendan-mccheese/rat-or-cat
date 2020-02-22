@@ -5,8 +5,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "bootstrap": "cd packages/frontend && yarn install && cd ../image-service && yarn install",
-    "start": "concurrently \"cd packages/frontend && yarn start\" \"cd packages/image-service && yarn start\""
+    "bootstrap": "cd packages/frontend-angular && yarn install && cd ../image-service && yarn install",
+    "start": "concurrently \\\\\\\\\\\\\\\"cd packages/frontend-angular && yarn start\\\\\\\\\\\\\\\" \\\\\\\\\\\\\\\"cd packages/service-images-nest-rest && yarn start\\\\\\\\\\\\\\\""
   },
   "devDependencies": {
     "prettier": "^1.19.1",

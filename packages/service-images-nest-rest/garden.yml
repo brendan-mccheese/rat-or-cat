@@ -1,9 +1,9 @@
 kind: Module
-name: image-service
+name: service-images-nest-rest
 description: Image service
 type: container
 services:
-  - name: image-service
+  - name: service-images-nest-rest
     ports:
       - name: http
         containerPort: 3000

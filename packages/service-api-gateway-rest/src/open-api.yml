@@ -1,0 +1,16 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Rat or Cat Express API Gateway
+paths:
+  /high-score:
+    description: Adds or updates high scores
+    put:
+      summary: Updates or creates a high score
+      operationId: upsert-high-score
+      parameters:
+        -
+      responses:
+
+
+

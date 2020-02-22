@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package HighScores;
+
+service HighScores {
+    rpc AddHighScore(HighScore) returns (HighScore) {}
+}
+
+message HighScore {
+    string id = 1;
+}

@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rat-or-cat-service-images-nest-rest
+spec:
+  selector:
+    matchLabels:
+      app: service-images-nest-rest
+  template:
+    metadata:
+      labels:
+        app: service-images-nest-rest
+    spec:
+      containers:
+        - name: service-images-nest-rest
+          image: rat-or-cat/service-images-nest-rest
+          ports:
+            - containerPort: 3000

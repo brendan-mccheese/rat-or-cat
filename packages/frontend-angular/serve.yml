@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: rat-or-cat-frontend
+  name: rat-or-cat-frontend-angular
 spec:
   selector:
     matchLabels:
-      app: frontend
+      app: frontend-angular
   template:
     metadata:
       labels:
-        app: frontend
+        app: frontend-angular
     spec:
       containers:
-        - name: frontend
-          image: rat-or-cat/frontend
+        - name: frontend-angular
+          image: rat-or-cat/frontend-angular
           ports:
             - containerPort: 4200
