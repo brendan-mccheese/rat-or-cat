@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="start:highscores-service-grpc" type="js.build_tools.npm">
-    <package-json value="$PROJECT_DIR$/packages/highscores-service-node-grpc/package.json" />
+  <configuration default="false" name="start:service-api-gateway-express" type="js.build_tools.npm">
+    <package-json value="$PROJECT_DIR$/packages/service-api-gateway-rest/package.json" />
     <command value="run" />
     <scripts>
       <script value="start" />

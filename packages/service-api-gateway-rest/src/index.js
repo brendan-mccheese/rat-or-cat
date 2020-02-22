@@ -3,7 +3,7 @@ import { apiGatewayLogger } from "./api-gateway-logger";
 import swaggerUI from "swagger-ui-express";
 import yamljs from "yamljs";
 
-let port = process.env.PORT || 3000;
+let port = process.env.PORT || 8080;
 
 app.use("/docs", swaggerUI.serve, swaggerUI.setup(yamljs.load(`${__dirname}/open-api.yml`)));
 

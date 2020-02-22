@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="start:all" type="CompoundRunConfigurationType">
+    <toRun name="start:service-highscores-grpc" type="js.build_tools.npm" />
+    <toRun name="start:service-images-nest" type="js.build_tools.npm" />
+    <toRun name="start:frontend-angular" type="js.build_tools.npm" />
+    <toRun name="start:service-api-gateway-express" type="js.build_tools.npm" />
+    <method v="2" />
+  </configuration>
+</component>

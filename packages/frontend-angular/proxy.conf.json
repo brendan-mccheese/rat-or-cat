@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "http://image-service.rat-or-cat.svc.cluster.local:3000",
+    "target": "http://localhost:8080",
     "pathRewrite": {
       "^/api": ""
     }

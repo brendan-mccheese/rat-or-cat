@@ -38,9 +38,9 @@ export class QuestionComponent implements OnInit {
         // Get randomized rat or cat image data
         let result$: Observable<ImageResult>;
         if (Math.floor(Math.random() * 2) === 1) {
-            result$ = this.httpClient.get("/api/cat-image").pipe(share()) as Observable<ImageResult>;
+            result$ = this.httpClient.get("/api/image-data/cat").pipe(share()) as Observable<ImageResult>;
         } else {
-            result$ = this.httpClient.get("/api/rat-image").pipe(share()) as Observable<ImageResult>;
+            result$ = this.httpClient.get("/api/image-data/rat").pipe(share()) as Observable<ImageResult>;
         }
         this.image$ = result$.pipe(map((x: any) => `/api${x.path}`));
         this.correctAnswer$ = result$.pipe(map((x: any) => x.type));
