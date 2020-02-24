@@ -8,7 +8,8 @@ import { apiGatewayLogger } from "../api-gateway-logger";
  * @param app
  */
 export const configureHighScoresRoutes = (app) => {
-    const highScoresClient = new grpcHighScores.HighScoresClient("localhost:50051", grpc.credentials.createInsecure());
+    let clientAddress = process.env.HIGH_SCORES_API_URI || "localhost:50051";
+    const highScoresClient = new grpcHighScores.HighScoresClient(clientAddress, grpc.credentials.createInsecure());
 
     app.post("/high-score", (req, res) => {
         const data = new messages.HighScore();

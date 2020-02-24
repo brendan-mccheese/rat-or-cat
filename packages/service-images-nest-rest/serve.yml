@@ -1,7 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: rat-or-cat-service-images-nest-rest
+  name: service-images-nest-rest
+  namespace: rat-or-cat
 spec:
   selector:
     matchLabels:
@@ -16,3 +17,16 @@ spec:
           image: rat-or-cat/service-images-nest-rest
           ports:
             - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-image-service
+  namespace: rat-or-cat
+spec:
+  selector:
+    app: service-images-nest-rest
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000

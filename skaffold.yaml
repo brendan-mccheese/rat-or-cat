@@ -1,0 +1,31 @@
+apiVersion: skaffold/v2alpha4
+kind: Config
+metadata:
+  name: rat-or-cat
+build:
+  artifacts:
+  - image: rat-or-cat/frontend-angular
+    context: packages/frontend-angular
+    docker:
+      dockerfile: serve.dockerfile
+  - image: rat-or-cat/service-highscores-node-grpc
+    context: packages/service-highscores-node-grpc
+    docker:
+      dockerfile: serve.dockerfile
+  - image: rat-or-cat/service-images-nest-rest
+    context: packages/service-images-nest-rest
+    docker:
+      dockerfile: serve.dockerfile
+deploy:
+  kubectl:
+    manifests:
+    - packages/frontend-angular/serve.yml
+    - packages/service-highscores-node-grpc/serve.yml
+    - packages/service-images-nest-rest/serve.yml
+portForward:
+  - resourceType: deployment
+    resourceName: rat-or-cat-frontend-angular
+    namespace: rat-or-cat
+    port: 4200
+    localPort: 4200
+

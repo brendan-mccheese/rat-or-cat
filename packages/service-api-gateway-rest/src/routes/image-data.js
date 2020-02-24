@@ -5,8 +5,9 @@ import request from "request";
  * @param app
  */
 export const configureImageDataRoutes = (app) => {
+    let imageServiceUri = process.env.IMAGE_SERVICE_URI || "http://localhost:3000";
     const imageClient = request.defaults({
-        baseUrl: "http://localhost:3000",
+        baseUrl: imageServiceUri,
     });
 
     app.get("/image-data/cat", (req, res) => {
