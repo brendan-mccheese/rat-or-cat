@@ -19,4 +19,5 @@ export interface AppState {
         question10?: AnswerResult;
         score: number;
     };
+    currentQuestion?: { path: string; imageType: CatOrRat };
 }
