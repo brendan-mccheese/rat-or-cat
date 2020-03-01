@@ -13,15 +13,21 @@ export const configureHighScoresRoutes = (app) => {
     const highScoresClient = new grpcHighScores.HighScoresClient(clientAddress, grpc.credentials.createInsecure());
 
     app.post("/high-score", (req, res) => {
-        const data = new messages.HighScore();
-        data.setScore(req.body.score);
-        data.setUsername(req.body.username);
-        highScoresClient.addHighScore(data, (err, result) => {
-            if (err) {
-                apiGatewayLogger.error({ err }, "Error adding high score");
-                return res.sendStatus(500);
-            }
-            res.json(result.toObject());
-        });
+        try {
+            const data = new messages.HighScore();
+            data.setScore(req.body.score);
+            data.setUsername(req.body.username);
+            data.setTimestamp(new Date(req.body.timestamp).valueOf());
+            highScoresClient.addHighScore(data, (err, result) => {
+                if (err) {
+                    apiGatewayLogger.error({ err }, "Error adding high score");
+                    return res.sendStatus(500);
+                }
+                res.json(result.toObject());
+            });
+        } catch (err) {
+            apiGatewayLogger.error({err}, "Error adding new high score");
+            return res.sendStatus(500);
+        }
     });
 };

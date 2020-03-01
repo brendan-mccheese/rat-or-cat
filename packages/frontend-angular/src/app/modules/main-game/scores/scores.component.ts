@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
-import { combineLatest, merge, Observable } from "rxjs";
+import { combineLatest, Observable } from "rxjs";
 import { select, Store } from "@ngrx/store";
 import { AppState } from "../../../store/app-state";
 import { Router } from "@angular/router";
@@ -21,11 +21,15 @@ export class ScoresComponent implements OnInit {
     ngOnInit(): void {
         this.username$ = this.store.pipe(select(x => x.username));
         this.score$ = this.store.select(x => x.answers.score);
-        combineLatest([this.username$, this.score$]).pipe(
-            filter(([username, score]) => username != null && score != null),
-            first(),
-            concatMap(([username, score]) => this.highScoreService.addHighScore({username, score})),
-        ).subscribe();
+        combineLatest([this.username$, this.score$])
+            .pipe(
+                filter(([username, score]) => username != null && score != null),
+                first(),
+                concatMap(([username, score]) =>
+                    this.highScoreService.addHighScore({ username, score, timestamp: new Date() }),
+                ),
+            )
+            .subscribe();
     }
 
     playAgain() {

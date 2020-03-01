@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "build": "babel ./src -d ./dist",
-    "start": "nodemon --exec babel-node ./src/index.js "
+    "start": "nodemon -e js,yml --exec babel-node ./src/index.js "
   },
   "dependencies": {
     "body-parser": "~1.19.0",

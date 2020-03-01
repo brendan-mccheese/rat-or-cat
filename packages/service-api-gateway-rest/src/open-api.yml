@@ -1,16 +1,58 @@
 openapi: 3.0.0
 info:
   version: 1.0.0
-  title: Rat or Cat Express API Gateway
+  title: Rat or Cat API Gateway
 paths:
-  /high-score:
+  '/high-score':
     description: Adds or updates high scores
-    put:
-      summary: Updates or creates a high score
-      operationId: upsert-high-score
-      parameters:
-        -
+    post:
+      summary: Adds a new high score
+      operationId: add-high-score
+      requestBody:
+        description: "The new high score"
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HighScore"
       responses:
+        '200':
+          description: "Returns the newly inserted high score"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HighScore"
+    get:
+      summary: Returns all high scores
+      operationId: get-all-high-scores
+      responses:
+        '200':
+          description: "All current high scores"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/HighScore"
 
+components:
+  schemas:
+    HighScore:
+      type: object
+      required:
+        - username
+        - score
+        - timestamp
+      properties:
+        username:
+          type: string
+          description: "The username the score belongs to"
+        score:
+          type: integer
+          description: "The current score"
+        timestamp:
+          type: string
+          format: date
+          description: "The ISO timestamp the score was recorded"
 
 
