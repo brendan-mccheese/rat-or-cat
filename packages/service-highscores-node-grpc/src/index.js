@@ -8,7 +8,7 @@ const server = new grpc.Server();
 
 initMongo(process.env.MONGO_URL).then(() => {
     // gRPC service
-    server.addService(highscores.HighScoresService, {
+    server.addService(highscores.HighScoresServiceService, {
         addHighScore,
     });
     // gRPC server

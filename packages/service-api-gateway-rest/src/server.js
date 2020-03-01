@@ -3,9 +3,9 @@ import bodyParser from "body-parser";
 import { configureImageDataRoutes } from "./routes/image-data";
 import { configureHighScoresRoutes } from "./routes/high-scores";
 
-const app = express();
+export const app = express();
 app.use(bodyParser.json({ strict: true }));
 configureHighScoresRoutes(app);
 configureImageDataRoutes(app);
 
-module.exports = app;
+

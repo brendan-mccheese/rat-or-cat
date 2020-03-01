@@ -1,4 +1,4 @@
-import app from "./server";
+import {app} from "./server";
 import { apiGatewayLogger } from "./api-gateway-logger";
 import swaggerUI from "swagger-ui-express";
 import yamljs from "yamljs";

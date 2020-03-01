@@ -7,35 +7,52 @@
 import * as grpc from "grpc";
 import * as highscore_service_pb from "./highscore-service_pb";
 
-interface IHighScoresService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
-    addHighScore: IHighScoresService_IAddHighScore;
+interface IHighScoresServiceService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
+    getAllHighScores: IHighScoresServiceService_IGetAllHighScores;
+    addHighScore: IHighScoresServiceService_IAddHighScore;
 }
 
-interface IHighScoresService_IAddHighScore extends grpc.MethodDefinition<highscore_service_pb.HighScore, highscore_service_pb.AddHighScoreResponse> {
-    path: string; // "/HighScores.HighScores/AddHighScore"
+interface IHighScoresServiceService_IGetAllHighScores extends grpc.MethodDefinition<highscore_service_pb.GetAllHighScoresParams, highscore_service_pb.AllHighScoresResponse> {
+    path: string; // "/HighScores.HighScoresService/GetAllHighScores"
     requestStream: boolean; // false
     responseStream: boolean; // false
-    requestSerialize: grpc.serialize<highscore_service_pb.HighScore>;
-    requestDeserialize: grpc.deserialize<highscore_service_pb.HighScore>;
+    requestSerialize: grpc.serialize<highscore_service_pb.GetAllHighScoresParams>;
+    requestDeserialize: grpc.deserialize<highscore_service_pb.GetAllHighScoresParams>;
+    responseSerialize: grpc.serialize<highscore_service_pb.AllHighScoresResponse>;
+    responseDeserialize: grpc.deserialize<highscore_service_pb.AllHighScoresResponse>;
+}
+interface IHighScoresServiceService_IAddHighScore extends grpc.MethodDefinition<highscore_service_pb.NewHighScore, highscore_service_pb.AddHighScoreResponse> {
+    path: string; // "/HighScores.HighScoresService/AddHighScore"
+    requestStream: boolean; // false
+    responseStream: boolean; // false
+    requestSerialize: grpc.serialize<highscore_service_pb.NewHighScore>;
+    requestDeserialize: grpc.deserialize<highscore_service_pb.NewHighScore>;
     responseSerialize: grpc.serialize<highscore_service_pb.AddHighScoreResponse>;
     responseDeserialize: grpc.deserialize<highscore_service_pb.AddHighScoreResponse>;
 }
 
-export const HighScoresService: IHighScoresService;
+export const HighScoresServiceService: IHighScoresServiceService;
 
-export interface IHighScoresServer {
-    addHighScore: grpc.handleUnaryCall<highscore_service_pb.HighScore, highscore_service_pb.AddHighScoreResponse>;
+export interface IHighScoresServiceServer {
+    getAllHighScores: grpc.handleUnaryCall<highscore_service_pb.GetAllHighScoresParams, highscore_service_pb.AllHighScoresResponse>;
+    addHighScore: grpc.handleUnaryCall<highscore_service_pb.NewHighScore, highscore_service_pb.AddHighScoreResponse>;
 }
 
-export interface IHighScoresClient {
-    addHighScore(request: highscore_service_pb.HighScore, callback: (error: grpc.ServiceError | null, response: highscore_service_pb.AddHighScoreResponse) => void): grpc.ClientUnaryCall;
-    addHighScore(request: highscore_service_pb.HighScore, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: highscore_service_pb.AddHighScoreResponse) => void): grpc.ClientUnaryCall;
-    addHighScore(request: highscore_service_pb.HighScore, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: highscore_service_pb.AddHighScoreResponse) => void): grpc.ClientUnaryCall;
+export interface IHighScoresServiceClient {
+    getAllHighScores(request: highscore_service_pb.GetAllHighScoresParams, callback: (error: grpc.ServiceError | null, response: highscore_service_pb.AllHighScoresResponse) => void): grpc.ClientUnaryCall;
+    getAllHighScores(request: highscore_service_pb.GetAllHighScoresParams, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: highscore_service_pb.AllHighScoresResponse) => void): grpc.ClientUnaryCall;
+    getAllHighScores(request: highscore_service_pb.GetAllHighScoresParams, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: highscore_service_pb.AllHighScoresResponse) => void): grpc.ClientUnaryCall;
+    addHighScore(request: highscore_service_pb.NewHighScore, callback: (error: grpc.ServiceError | null, response: highscore_service_pb.AddHighScoreResponse) => void): grpc.ClientUnaryCall;
+    addHighScore(request: highscore_service_pb.NewHighScore, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: highscore_service_pb.AddHighScoreResponse) => void): grpc.ClientUnaryCall;
+    addHighScore(request: highscore_service_pb.NewHighScore, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: highscore_service_pb.AddHighScoreResponse) => void): grpc.ClientUnaryCall;
 }
 
-export class HighScoresClient extends grpc.Client implements IHighScoresClient {
+export class HighScoresServiceClient extends grpc.Client implements IHighScoresServiceClient {
     constructor(address: string, credentials: grpc.ChannelCredentials, options?: object);
-    public addHighScore(request: highscore_service_pb.HighScore, callback: (error: grpc.ServiceError | null, response: highscore_service_pb.AddHighScoreResponse) => void): grpc.ClientUnaryCall;
-    public addHighScore(request: highscore_service_pb.HighScore, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: highscore_service_pb.AddHighScoreResponse) => void): grpc.ClientUnaryCall;
-    public addHighScore(request: highscore_service_pb.HighScore, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: highscore_service_pb.AddHighScoreResponse) => void): grpc.ClientUnaryCall;
+    public getAllHighScores(request: highscore_service_pb.GetAllHighScoresParams, callback: (error: grpc.ServiceError | null, response: highscore_service_pb.AllHighScoresResponse) => void): grpc.ClientUnaryCall;
+    public getAllHighScores(request: highscore_service_pb.GetAllHighScoresParams, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: highscore_service_pb.AllHighScoresResponse) => void): grpc.ClientUnaryCall;
+    public getAllHighScores(request: highscore_service_pb.GetAllHighScoresParams, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: highscore_service_pb.AllHighScoresResponse) => void): grpc.ClientUnaryCall;
+    public addHighScore(request: highscore_service_pb.NewHighScore, callback: (error: grpc.ServiceError | null, response: highscore_service_pb.AddHighScoreResponse) => void): grpc.ClientUnaryCall;
+    public addHighScore(request: highscore_service_pb.NewHighScore, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: highscore_service_pb.AddHighScoreResponse) => void): grpc.ClientUnaryCall;
+    public addHighScore(request: highscore_service_pb.NewHighScore, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: highscore_service_pb.AddHighScoreResponse) => void): grpc.ClientUnaryCall;
 }

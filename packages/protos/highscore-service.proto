@@ -2,11 +2,7 @@ syntax = "proto3";
 
 package HighScores;
 
-service HighScores {
-    rpc AddHighScore(HighScore) returns (AddHighScoreResponse) {}
-}
-
-message HighScore {
+message NewHighScore {
     string id = 1;
     string username = 2;
     int32 score = 3;
@@ -14,6 +10,24 @@ message HighScore {
 }
 
 message AddHighScoreResponse {
-    HighScore inserted = 1;
+    NewHighScore inserted = 1;
     repeated string errors = 2;
+}
+
+message CurrentHighScore {
+    string id = 1;
+    string username = 2;
+    int32 score = 3;
+    int64 timestamp = 4;
+}
+
+message AllHighScoresResponse {
+    repeated CurrentHighScore scores = 1;
+}
+
+message GetAllHighScoresParams {}
+
+service HighScoresService {
+    rpc GetAllHighScores (GetAllHighScoresParams) returns (AllHighScoresResponse);
+    rpc AddHighScore (NewHighScore) returns (AddHighScoreResponse);
 }

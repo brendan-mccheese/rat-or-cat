@@ -10,11 +10,11 @@ import { apiGatewayLogger } from "../api-gateway-logger";
 export const configureHighScoresRoutes = (app) => {
     let clientAddress = process.env.HIGH_SCORES_API_URI || "localhost:50051";
     apiGatewayLogger.info({clientAddress}, `Configuring high scores routing`);
-    const highScoresClient = new grpcHighScores.HighScoresClient(clientAddress, grpc.credentials.createInsecure());
+    const highScoresClient = new grpcHighScores.HighScoresServiceClient(clientAddress, grpc.credentials.createInsecure());
 
     app.post("/high-score", (req, res) => {
         try {
-            const data = new messages.HighScore();
+            const data = new messages.NewHighScore();
             data.setScore(req.body.score);
             data.setUsername(req.body.username);
             data.setTimestamp(new Date(req.body.timestamp).valueOf());
