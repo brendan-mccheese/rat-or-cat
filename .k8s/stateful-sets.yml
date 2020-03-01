@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: mongodb-standalone
+  namespace: rat-or-cat
 spec:
   serviceName: database
   replicas: 1

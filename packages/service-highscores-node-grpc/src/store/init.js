@@ -1,6 +1,6 @@
 import { MongoClient } from "mongodb";
 import { initCollections } from "./collections";
-import { apiGatewayLogger } from "../api-gateway-logger";
+import { highScoresLogger } from "../high-scores-logger";
 
 /**
  * Init mongo and collections.
@@ -11,5 +11,5 @@ export const initMongo = async (connectionString) => {
         useNewUrlParser: true
     });
     initCollections(client.db());
-    apiGatewayLogger.info("Initialized mongo collections");
+    highScoresLogger.info("Initialized mongo collections");
 };

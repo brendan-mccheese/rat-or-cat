@@ -36,7 +36,7 @@ docker_build('rat-or-cat/api-gateway', 'packages/service-api-gateway-rest',
 docker_build('rat-or-cat/service-highscores-node-grpc', 'packages/service-highscores-node-grpc',
   dockerfile='./packages/service-highscores-node-grpc/serve.dockerfile',
   live_update=[
-    fall_back_on(['package.json', 'yarn.lock']),
+    fall_back_on(['./packages/service-highscores-node-grpc/package.json', './packages/service-highscores-node-grpc/yarn.lock']),
     sync('./packages/service-highscores-node-grpc', '/src'),
   ])
 

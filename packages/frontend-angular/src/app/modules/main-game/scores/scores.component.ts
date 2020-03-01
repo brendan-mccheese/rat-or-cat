@@ -1,8 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
-import { Observable } from "rxjs";
+import { combineLatest, merge, Observable } from "rxjs";
 import { select, Store } from "@ngrx/store";
 import { AppState } from "../../../store/app-state";
 import { Router } from "@angular/router";
+import { HighScoresService } from "../../../high-scores.service";
+import { concatMap, filter, first } from "rxjs/operators";
 
 @Component({
     selector: "roc-scores",
@@ -14,11 +16,16 @@ export class ScoresComponent implements OnInit {
     username$: Observable<string>;
     score$: Observable<number>;
 
-    constructor(private store: Store<AppState>, private router: Router) {}
+    constructor(private store: Store<AppState>, private router: Router, private highScoreService: HighScoresService) {}
 
     ngOnInit(): void {
         this.username$ = this.store.pipe(select(x => x.username));
         this.score$ = this.store.select(x => x.answers.score);
+        combineLatest([this.username$, this.score$]).pipe(
+            filter(([username, score]) => username != null && score != null),
+            first(),
+            concatMap(([username, score]) => this.highScoreService.addHighScore({username, score})),
+        ).subscribe();
     }
 
     playAgain() {

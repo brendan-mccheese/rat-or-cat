@@ -17,3 +17,19 @@ spec:
           image: rat-or-cat/service-highscores-node-grpc
           ports:
             - containerPort: 50051
+          env:
+            - name: MONGO_URL
+              value: "mongodb://admin:password@database:27017"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-high-scores
+  namespace: rat-or-cat
+spec:
+  selector:
+    app: highscores-node-grpc
+  ports:
+    - protocol: TCP
+      port: 50051
+      targetPort: 50051

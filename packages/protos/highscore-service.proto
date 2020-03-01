@@ -7,5 +7,6 @@ service HighScores {
 }
 
 message HighScore {
-    string id = 1;
+    string username = 1;
+    int32 score = 2;
 }

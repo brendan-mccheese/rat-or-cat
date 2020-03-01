@@ -1,5 +1,4 @@
 import { Highscore } from "../model/high-score";
-import { apiGatewayLogger } from "../api-gateway-logger";
 import { upsertHighscore } from "../store/upsert-highscore";
 
 /**

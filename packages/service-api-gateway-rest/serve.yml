@@ -20,6 +20,8 @@ spec:
           env:
             - name: IMAGE_SERVICE_URI
               value: "http://svc-image-service:3000"
+            - name: HIGH_SCORES_API_URI
+              value: "svc-high-scores:50051"
 ---
 apiVersion: v1
 kind: Service

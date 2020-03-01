@@ -63,7 +63,8 @@ proto.HighScores.HighScore.prototype.toObject = function(opt_includeInstance) {
  */
 proto.HighScores.HighScore.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, "")
+    username: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    score: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
   if (includeInstance) {
@@ -102,7 +103,11 @@ proto.HighScores.HighScore.deserializeBinaryFromReader = function(msg, reader) {
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setId(value);
+      msg.setUsername(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setScore(value);
       break;
     default:
       reader.skipField();
@@ -133,10 +138,17 @@ proto.HighScores.HighScore.prototype.serializeBinary = function() {
  */
 proto.HighScores.HighScore.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getId();
+  f = message.getUsername();
   if (f.length > 0) {
     writer.writeString(
       1,
+      f
+    );
+  }
+  f = message.getScore();
+  if (f !== 0) {
+    writer.writeInt32(
+      2,
       f
     );
   }
@@ -144,17 +156,32 @@ proto.HighScores.HighScore.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * optional string id = 1;
+ * optional string username = 1;
  * @return {string}
  */
-proto.HighScores.HighScore.prototype.getId = function() {
+proto.HighScores.HighScore.prototype.getUsername = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.HighScores.HighScore.prototype.setId = function(value) {
+proto.HighScores.HighScore.prototype.setUsername = function(value) {
   jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional int32 score = 2;
+ * @return {number}
+ */
+proto.HighScores.HighScore.prototype.getScore = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/** @param {number} value */
+proto.HighScores.HighScore.prototype.setScore = function(value) {
+  jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
