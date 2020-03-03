@@ -4,6 +4,7 @@ import { setUsername } from "../actions/set-username.actions";
 import { AnswerResult, AppState } from "../app-state";
 import * as answerActions from "../actions/answer.actions";
 import * as questionActions from "../actions/question.actions";
+import * as highScoreActions from "../actions/scores.actions";
 
 export function usernameReducer(state: string, action: Action) {
     return createReducer(
@@ -40,10 +41,22 @@ export function questionReducer(state: AppState["currentQuestion"], action: Acti
     )(state, action);
 }
 
+export function highScoreReducer(state: AppState["highScore"], action: Action) {
+    return createReducer(
+        null,
+        on(highScoreActions.highScoreSubmitted, (current, payload) => {
+            return {
+                ...payload,
+            };
+        }),
+    )(state, action);
+}
+
 export const reducers: ActionReducerMap<AppState> = {
     username: usernameReducer,
     answers: answersReducer,
     currentQuestion: questionReducer,
+    highScore: highScoreReducer,
 };
 
 export const metaReducers: MetaReducer<AppState>[] = !environment.production ? [] : [];

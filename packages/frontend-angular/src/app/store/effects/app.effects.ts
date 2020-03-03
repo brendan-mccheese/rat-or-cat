@@ -4,6 +4,7 @@ import { ImageService } from "../../image.service";
 import { loadQuestion, questionData } from "../actions/question.actions";
 import { map, mergeMap } from "rxjs/operators";
 import { HighScoresService } from "../../high-scores.service";
+import { highScoreSubmitted, submitScore } from "../actions/scores.actions";
 
 @Injectable()
 export class AppEffects {
@@ -15,7 +16,12 @@ export class AppEffects {
         ),
     );
 
-    highScores$ = createEffect(() => this.actions$.pipe(ofType()));
+    highScores$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(submitScore),
+            mergeMap(newScore => this.highScoresService.addHighScore(newScore).pipe(map(x => highScoreSubmitted(x)))),
+        ),
+    );
 
     constructor(
         private actions$: Actions,

@@ -1,3 +1,5 @@
+import { HighScore } from "../models/high-score";
+
 export type CatOrRat = "CAT" | "RAT";
 
 export interface AnswerResult {
@@ -7,10 +9,7 @@ export interface AnswerResult {
 
 export interface AppState {
     username?: string;
-    highScore?: {
-      score?: number;
-      date?: Date;
-    };
+    highScore?: HighScore;
     answers?: {
         question1?: AnswerResult;
         question2?: AnswerResult;

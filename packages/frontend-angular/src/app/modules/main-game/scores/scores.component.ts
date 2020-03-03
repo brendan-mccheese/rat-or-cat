@@ -4,7 +4,8 @@ import { select, Store } from "@ngrx/store";
 import { AppState } from "../../../store/app-state";
 import { Router } from "@angular/router";
 import { HighScoresService } from "../../../high-scores.service";
-import { concatMap, filter, first } from "rxjs/operators";
+import { filter, first } from "rxjs/operators";
+import { submitScore } from "../../../store/actions/scores.actions";
 
 @Component({
     selector: "roc-scores",
@@ -25,11 +26,16 @@ export class ScoresComponent implements OnInit {
             .pipe(
                 filter(([username, score]) => username != null && score != null),
                 first(),
-                concatMap(([username, score]) =>
-                    this.highScoreService.addHighScore({ username, score, timestamp: new Date() }),
-                ),
             )
-            .subscribe();
+            .subscribe(([username, score]) =>
+                this.store.dispatch(
+                    submitScore({
+                        score,
+                        username,
+                        timestamp: new Date(),
+                    }),
+                ),
+            );
     }
 
     playAgain() {
