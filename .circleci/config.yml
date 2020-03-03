@@ -53,7 +53,7 @@ var_docker_default: &default_docker
 # Job definitions
 #
 jobs:
-  build-frontend:
+  build-frontend-angular:
     <<: *default_docker
     working_directory: ~/repo/packages/frontend-angular
     steps:
@@ -64,7 +64,7 @@ jobs:
           name: Build frontend-angular
           command: yarn build --configuration=production
 
-  test-frontend:
+  test-frontend-angular:
     <<: *default_docker
     working_directory: ~/repo/packages/frontend-angular
     steps:
@@ -73,7 +73,7 @@ jobs:
       - install_frontend_modules
       - jest_with_junit
 
-  build-image-service:
+  build-service-images-nest-rest:
     <<: *default_docker
     working_directory: ~/repo/packages/service-images-nest-rest
     steps:
@@ -84,7 +84,7 @@ jobs:
           name: Build image service
           command: yarn build
 
-  test-image-service:
+  test-service-images-nest-rest:
     <<: *default_docker
     working_directory: ~/repo/packages/service-images-nest-rest
     steps:
@@ -101,9 +101,9 @@ workflows:
     jobs:
       - build-frontend-angular
       - build-service-images-nest-rest
-      - test-frontend:
+      - test-frontend-angular:
           requires:
             - build-frontend-angular
-      - test-image-service:
+      - test-service-images-nest-rest:
           requires:
             - build-service-images-nest-rest
