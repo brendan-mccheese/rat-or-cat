@@ -3,6 +3,7 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { ImageService } from "../../image.service";
 import { loadQuestion, questionData } from "../actions/question.actions";
 import { map, mergeMap } from "rxjs/operators";
+import { HighScoresService } from "../../high-scores.service";
 
 @Injectable()
 export class AppEffects {
@@ -10,9 +11,15 @@ export class AppEffects {
         this.actions$.pipe(
             ofType(loadQuestion),
             mergeMap(() => this.imageService.getImage()),
-            map(x => questionData({path: x.path, imageType: x.type}))
+            map(x => questionData({ path: x.path, imageType: x.type })),
         ),
     );
 
-    constructor(private actions$: Actions, private imageService: ImageService) {}
+    highScores$ = createEffect(() => this.actions$.pipe(ofType()));
+
+    constructor(
+        private actions$: Actions,
+        private imageService: ImageService,
+        private highScoresService: HighScoresService,
+    ) {}
 }

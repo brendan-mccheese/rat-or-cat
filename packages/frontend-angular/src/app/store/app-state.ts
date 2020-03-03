@@ -7,6 +7,10 @@ export interface AnswerResult {
 
 export interface AppState {
     username?: string;
+    highScore?: {
+      score?: number;
+      date?: Date;
+    };
     answers?: {
         question1?: AnswerResult;
         question2?: AnswerResult;
