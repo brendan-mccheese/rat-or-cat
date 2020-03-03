@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: highscores-node-grpc
+  namespace: rat-or-cat
+spec:
+  selector:
+    matchLabels:
+      app: highscores-node-grpc
+  template:
+    metadata:
+      labels:
+        app: highscores-node-grpc
+    spec:
+      containers:
+        - name: highscores-node-grpc
+          image: rat-or-cat/service-highscores-node-grpc
+          ports:
+            - containerPort: 50051
+          env:
+            - name: MONGO_URL
+              value: "mongodb://admin:password@database:27017"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-high-scores
+  namespace: rat-or-cat
+spec:
+  selector:
+    app: highscores-node-grpc
+  ports:
+    - protocol: TCP
+      port: 50051
+      targetPort: 50051

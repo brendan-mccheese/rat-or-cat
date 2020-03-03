@@ -11,28 +11,28 @@ commands:
     steps:
       - restore_cache:
           keys:
-            - v1-packages-frontend-{{ checksum "package.json" }}
-            - v1-packages-frontend-
+            - v1-packages-frontend-angular-{{ checksum "package.json" }}
+            - v1-packages-frontend-angular-
       - run:
           name: Install node modules
           command: yarn install --frozen-lockfile
       - save_cache:
           paths:
             - node_modules
-          key: v1-packages-frontend-{{ checksum "package.json" }}
+          key: v1-packages-frontend-angular-{{ checksum "package.json" }}
   install_image_service_modules:
     steps:
       - restore_cache:
           keys:
-            - v1-packages-image-service-{{ checksum "package.json" }}
-            - v1-packages-image-service-
+            - v1-packages-service-images-nest-rest-{{ checksum "package.json" }}
+            - v1-packages-service-images-nest-rest-
       - run:
           name: Install node modules
           command: yarn install --frozen-lockfile
       - save_cache:
           paths:
             - node_modules
-          key: v1-packages-image-service-{{ checksum "package.json" }}
+          key: v1-packages-service-images-nest-rest-{{ checksum "package.json" }}
   jest_with_junit:
     steps:
       - run:
@@ -53,29 +53,29 @@ var_docker_default: &default_docker
 # Job definitions
 #
 jobs:
-  build-frontend:
+  build-frontend-angular:
     <<: *default_docker
-    working_directory: ~/repo/packages/frontend
+    working_directory: ~/repo/packages/frontend-angular
     steps:
       - checkout:
           path: ~/repo
       - install_frontend_modules
       - run:
-          name: Build frontend
+          name: Build frontend-angular
           command: yarn build --configuration=production
 
-  test-frontend:
+  test-frontend-angular:
     <<: *default_docker
-    working_directory: ~/repo/packages/frontend
+    working_directory: ~/repo/packages/frontend-angular
     steps:
       - checkout:
           path: ~/repo
       - install_frontend_modules
       - jest_with_junit
 
-  build-image-service:
+  build-service-images-nest-rest:
     <<: *default_docker
-    working_directory: ~/repo/packages/image-service
+    working_directory: ~/repo/packages/service-images-nest-rest
     steps:
       - checkout:
           path: ~/repo
@@ -84,9 +84,9 @@ jobs:
           name: Build image service
           command: yarn build
 
-  test-image-service:
+  test-service-images-nest-rest:
     <<: *default_docker
-    working_directory: ~/repo/packages/image-service
+    working_directory: ~/repo/packages/service-images-nest-rest
     steps:
       - checkout:
           path: ~/repo
@@ -99,11 +99,11 @@ jobs:
 workflows:
   build-test-deploy:
     jobs:
-      - build-frontend
-      - build-image-service
-      - test-frontend:
+      - build-frontend-angular
+      - build-service-images-nest-rest
+      - test-frontend-angular:
           requires:
-            - build-frontend
-      - test-image-service:
+            - build-frontend-angular
+      - test-service-images-nest-rest:
           requires:
-            - build-image-service
+            - build-service-images-nest-rest
