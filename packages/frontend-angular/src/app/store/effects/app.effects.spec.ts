@@ -3,6 +3,8 @@ import { provideMockActions } from "@ngrx/effects/testing";
 import { Observable, of } from "rxjs";
 
 import { AppEffects } from "./app.effects";
+import { HttpTestingController } from "@angular/common/http/testing";
+import { HttpClient } from "@angular/common/http";
 
 describe("AppEffects", () => {
   const actions$: Observable<any> = of([]);
@@ -13,6 +15,10 @@ describe("AppEffects", () => {
       providers: [
         AppEffects,
         provideMockActions(() => actions$),
+        {
+          provide: HttpClient,
+          useValue: {}
+        }
       ],
     });
 

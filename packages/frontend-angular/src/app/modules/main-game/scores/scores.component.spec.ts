@@ -18,7 +18,7 @@ describe("ScoresComponent", () => {
         {
           provide: Router,
           useValue: {}
-        }
+        },
       ]
     })
       .compileComponents();

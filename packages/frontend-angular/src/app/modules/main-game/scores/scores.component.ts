@@ -17,7 +17,7 @@ export class ScoresComponent implements OnInit {
     username$: Observable<string>;
     score$: Observable<number>;
 
-    constructor(private store: Store<AppState>, private router: Router, private highScoreService: HighScoresService) {}
+    constructor(private store: Store<AppState>, private router: Router) {}
 
     ngOnInit(): void {
         this.username$ = this.store.pipe(select(x => x.username));
